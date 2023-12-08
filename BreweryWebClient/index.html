@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>CS234N - UI</title>
+    <link href='/src/media/favicon.ico' rel='icon'>
+    <link href='/src/libs/bootstrap.min.css' rel='stylesheet'>
+</head>
+
+<body data-bs-theme='light'>
+    <div id='root'></div>
+
+    <script type='text/babel'>
+        /* jshint esversion: 6 */
+
+        const { createElement, useState } = React;
+
+        function Order() {
+            const Navbar = () => {
+                return (
+                    <nav className='navbar navbar-expand-lg border-bottom border-dark-subtle' >
+                        <div className='container'>
+                            <a className='navbar-brand me-3' href='/'>
+                                <img className='d-inline-block align-text-top me-3' src='/src/media/transparentLogo.png' alt='Logo' width='32' height='32' />
+                                Manifest Beer
+                            </a>
+                            <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                                <span className='navbar-toggler-icon'></span>
+                            </button>
+                            <div className='collapse navbar-collapse' id='navbarSupportedContent'>
+                                <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+                                    <li className='nav-item'>
+                                        <a className='nav-link' href='/shoppinglist.html'>Shopping List</a>
+                                    </li>
+                                    <li className='nav-item'>
+                                        <a className='nav-link' href='/'>Available Suppliers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                );
+            }
+
+            const Main = () => {
+                const [supplierId, setSupplierId] = useState(0);
+                const [addressId, setAddressId] = useState(0);
+                const [addressTypeId, setAddressTypeId] = useState(0);
+
+                const listRowSuppliers = [
+                    { supplierId: 1, addressId: 1, addressTypeId: 1, name: 'BSG Craft Brewing', phone: '18003742739', email: 'sales@bsgcraft.com', website: 'https://bsgcraftbrewing.com/', contactFirstName: 'N/A', contactLastName: 'N/A', contactPhone: 'N/A', contactEmail: 'N/A', note: 'N/A' },
+                    { supplierId: 2, addressId: 2, addressTypeId: 2, name: 'Malteurop Malting Company', phone: '8445466258', email: 'customerservice@malteurop.com', website: 'https://www.malteurop.com/en/usa', contactFirstName: 'N/A', contactLastName: 'N/A', contactPhone: 'N/A', contactEmail: 'N/A', note: 'N/A' },
+                    { supplierId: 3, addressId: 3, addressTypeId: 3, name: 'Country Malt Group', phone: '8004967732', email: 'orders.usa@brewcraftusa.com', website: 'https://shop.brewcraftusa.com/', contactFirstName: 'Zach', contactLastName: 'Grossfeld', contactPhone: '3606996765', contactEmail: 'zgrossfeld@countrymalt.com', note: 'N/A' },
+                    { supplierId: 4, addressId: 4, addressTypeId: 4, name: 'Hopsteiner', phone: '8003398410', email: 'sales@hopsteiner.com', website: 'https://www.hopsteiner.com/', contactFirstName: 'Bill', contactLastName: 'Elkins', contactPhone: '509.453.4731', contactEmail: 'welkins@hopsteiner.com', note: 'N/A' },
+                    { supplierId: 5, addressId: 5, addressTypeId: 5, name: 'John I. Haas, Inc.', phone: '2027774800', email: 'N/A', website: 'https://www.johnihaas.com/', contactFirstName: 'N/A', contactLastName: 'N/A', contactPhone: 'N/A', contactEmail: 'N/A', note: 'N/A' },
+                    { supplierId: 6, addressId: 6, addressTypeId: 6, name: 'White Labs', phone: '8885932785', email: 'info@whitelabs.com', website: 'https://www.whitelabs.com/', contactFirstName: 'Kim', contactLastName: 'Derr', contactPhone: '858.267.7691', contactEmail: 'kderr@whitelabs.com ', note: 'N/A' }
+                ];
+
+                const listRowAddresses = [
+                    { addressId: 1, addressTypeId: 1, streetLine1: '800 West 1st Ave', streetLine2: 'N/A', city: 'Shakopee', state: 'MN', zipcode: '55379', country: 'USA' },
+                    { addressId: 2, addressTypeId: 2, streetLine1: '3830 W. Grant Street', streetLine2: 'N/A', city: 'Milwaukee', state: 'WI', zipcode: '53215', country: 'USA' },
+                    { addressId: 3, addressTypeId: 3, streetLine1: '2501 Kotobuki Way', streetLine2: 'N/A', city: 'Vancouver', state: 'WA', zipcode: '98660', country: 'USA' },
+                    { addressId: 4, addressTypeId: 4, streetLine1: '1 West Washington Avenue', streetLine2: 'N/A', city: 'Yakima', state: 'WA', zipcode: '98903', country: 'USA' },
+                    { addressId: 5, addressTypeId: 5, streetLine1: '725 5th Avenue', streetLine2: 'N/A', city: 'New York', state: 'NY', zipcode: '10022', country: 'USA' },
+                    { addressId: 6, addressTypeId: 6, streetLine1: '5185 MacArthur Blvd. N.W.', streetLine2: 'Suite 300', city: 'Washington', state: 'DC', zipcode: '20016', country: 'USA' },
+                    { addressId: 7, addressTypeId: 7, streetLine1: ': 9495 Candida Street', streetLine2: 'N/A', city: 'San Diego', state: 'CA', zipcode: '92126', country: 'USA' },
+                ];
+
+                const TableRowSuppliers = ({ supplierId, addressId, addressTypeId, name, phone, email, website, contactFirstName, contactLastName, contactPhone, contactEmail, note }) => {
+                    return (
+                        <tr >
+                            <td>{supplierId}</td>
+                            <td>{addressId}</td>
+                            <td>{addressTypeId}</td>
+                            <td>{name}</td>
+                            <td>{phone}</td>
+                            <td>{email}</td>
+                            <td>{website}</td>
+                            <td>{contactFirstName}</td>
+                            <td>{contactLastName}</td>
+                            <td>{contactPhone}</td>
+                            <td>{contactEmail}</td>
+                            <td>{note}</td>
+                            <td><a className='btn btn-primary rounded-0 fw-bold' href={website}>{website}</a></td>
+                        </tr>
+                    );
+                }
+
+                const TableRowAddresses = ({ addressId, addressTypeId, streetLine1, streetLine2, city, state, zipcode, country }) => {
+                    return (
+                        <tr >
+                            <td>{addressId}</td>
+                            <td>{addressTypeId}</td>
+                            <td>{streetLine1}</td>
+                            <td>{streetLine2}</td>
+                            <td>{city}</td>
+                            <td>{state}</td>
+                            <td>{zipcode}</td>
+                            <td>{country}</td>
+                        </tr>
+                    );
+                }
+
+                const handleSubmit = e => {
+                    e.preventDefault();
+
+                    console.table({ supplierId, addressId, addressTypeId });
+                    alert('Form field values were logged to the console.');
+                }
+
+                return (
+                    <main className='m-2 m-lg-5'>
+                        <form className='d-flex flex-column gap-5 container' method='post' onSubmit={handleSubmit}>
+                            {/* Search Filters */}
+                            <div className='w-100 border border-secondary-subtle'>
+                                <h1 className='bg-secondary-subtle text-center mb-0 p-4'>Search Filters</h1>
+                                <div className='d-flex flex-column gap-4 p-3'>
+                                    <div className='input-group'>
+                                        <span className='input-group-text border-secondary-subtle'>Supplier ID</span>
+                                        <input className='form-control border-secondary-subtle' name='supplier_id' type='number' value={addressTypeId} onChange={e => setAddressTypeId(e.target.value)} />
+                                    </div>
+                                    <div className='input-group'>
+                                        <span className='input-group-text border-secondary-subtle'>Address ID</span>
+                                        <input className='form-control border-secondary-subtle' name='address_id' type='number' value={addressId} onChange={e => setAddressId(e.target.value)} />
+                                    </div>
+                                    <div className='input-group'>
+                                        <span className='input-group-text border-secondary-subtle'>Address Type ID</span>
+                                        <input className='form-control border-secondary-subtle' name='address_type_id' type='number' value={supplierId} onChange={e => setSupplierId(e.target.value)} />
+                                    </div>
+                                    <div className='input-group'>
+                                        <input className='input-group-text btn btn-lg btn-primary rounded-0 fw-bold' type='submit' value='SEARCH' />
+                                    </div>
+                                </div>
+                            </div>
+                            {/* Suppliers */}
+                            <div className='d-flex flex-column gap-3 w-100 border border-secondary-subtle'>
+                                <h1 className='bg-secondary-subtle text-center mb-0 p-4'>Suppliers</h1>
+                                <div className='table-responsive m-3 my-0'>
+                                    <table className='overflow-scroll table table-striped table-bordered text-center border-secondary-subtle mb-0'>
+                                        <thead>
+                                            <tr>
+                                                <th scope='col'>supplier_id</th>
+                                                <th scope='col'>address_id</th>
+                                                <th scope='col'>address_type_id</th>
+                                                <th scope='col'>name</th>
+                                                <th scope='col'>phone</th>
+                                                <th scope='col'>email</th>
+                                                <th scope='col'>website</th>
+                                                <th scope='col'>contact_first_name</th>
+                                                <th scope='col'>contact_last_name</th>
+                                                <th scope='col'>contact_phone</th>
+                                                <th scope='col'>contact_email</th>
+                                                <th scope='col'>note</th>
+                                                <th scope='col'>order</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {listRowSuppliers.map((r, i) => <TableRowSuppliers supplierId={r.supplierId} addressId={r.addressId} addressTypeId={r.addressTypeId} name={r.name} phone={r.phone} email={r.email} website={r.website} contactFirstName={r.contactFirstName} contactLastName={r.contactLastName} contactPhone={r.contactPhone} contactEmail={r.contactEmail} note={r.note} />)}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {/* Addresses */}
+                            <div className='d-flex flex-column gap-3 w-100 border border-secondary-subtle'>
+                                <h1 className='bg-secondary-subtle text-center mb-0 p-4'>Addresses</h1>
+                                <div className='table-responsive m-3 my-0'>
+                                    <table className='overflow-scroll table table-striped table-bordered text-center border-secondary-subtle mb-0'>
+                                        <thead>
+                                            <tr>
+                                                <th scope='col'>address_id</th>
+                                                <th scope='col'>address_type_id</th>
+                                                <th scope='col'>street_line_1</th>
+                                                <th scope='col'>street_line_2</th>
+                                                <th scope='col'>city</th>
+                                                <th scope='col'>state</th>
+                                                <th scope='col'>zipcode</th>
+                                                <th scope='col'>country</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {listRowAddresses.map((r, i) => <TableRowAddresses addressId={r.addressId} addressTypeId={r.addressTypeId} streetLine1={r.streetLine1} streetLine2={r.streetLine2} city={r.city} state={r.state} zipcode={r.zipcode} country={r.country} />)}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </main>
+                );
+            }
+
+            return (
+                <>
+                    <Navbar />
+                    <Main />
+                </>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        root.render(<Order />)
+    </script>
+    <script src='/src/libs//bootstrap.bundle.min.js'></script>
+    <script src='/src/libs/react.production.min.js'></script>
+    <script src='/src/libs/react-dom.production.min.js'></script>
+    <script src='/src/libs/babel.min.js'></script>
+</body>
+
+</html>
