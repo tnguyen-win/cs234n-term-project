@@ -70,12 +70,12 @@ namespace BreweryTests {
                 SupplierId = 4000,
                 Name = "Target",
                 Phone = "12345678910",
-                Email = "inquiries@walmart.com",
+                Email = "inquiries@target.com",
                 Website = "https://walmart.com",
-                ContactFirstName = "John",
+                ContactFirstName = "Jane",
                 ContactLastName = "Doe",
                 ContactPhone = "110987654321",
-                ContactEmail = "johndoe@walmart.com",
+                ContactEmail = "janedoe@target.com",
                 Note = null
             };
             dbContext.Suppliers.Add(s);
