@@ -20,7 +20,7 @@
         function Order() {
             const Navbar = () => {
                 return (
-                    <nav className='navbar navbar-expand-lg border-bottom border-dark-subtle' >
+                    <nav className='navbar navbar-expand-lg border-bottom border-dark-subtle'>
                         <div className='container'>
                             <a className='navbar-brand me-3' href='/'>
                                 <img className='d-inline-block align-text-top me-3' src='/src/media/transparentLogo.png' alt='Logo' width='32' height='32' />
@@ -42,7 +42,7 @@
                         </div>
                     </nav>
                 );
-            }
+            };
 
             const Main = () => {
                 const [supplierId, setSupplierId] = useState(0);
@@ -65,7 +65,7 @@
                     { addressId: 4, addressTypeId: 4, streetLine1: '1 West Washington Avenue', streetLine2: 'N/A', city: 'Yakima', state: 'WA', zipcode: '98903', country: 'USA' },
                     { addressId: 5, addressTypeId: 5, streetLine1: '725 5th Avenue', streetLine2: 'N/A', city: 'New York', state: 'NY', zipcode: '10022', country: 'USA' },
                     { addressId: 6, addressTypeId: 6, streetLine1: '5185 MacArthur Blvd. N.W.', streetLine2: 'Suite 300', city: 'Washington', state: 'DC', zipcode: '20016', country: 'USA' },
-                    { addressId: 7, addressTypeId: 7, streetLine1: ': 9495 Candida Street', streetLine2: 'N/A', city: 'San Diego', state: 'CA', zipcode: '92126', country: 'USA' },
+                    { addressId: 7, addressTypeId: 7, streetLine1: ': 9495 Candida Street', streetLine2: 'N/A', city: 'San Diego', state: 'CA', zipcode: '92126', country: 'USA' }
                 ];
 
                 const TableRowSuppliers = ({ supplierId, addressId, addressTypeId, name, phone, email, website, contactFirstName, contactLastName, contactPhone, contactEmail, note }) => {
@@ -86,7 +86,7 @@
                             <td><a className='btn btn-primary rounded-0 fw-bold' href={website}>{website}</a></td>
                         </tr>
                     );
-                }
+                };
 
                 const TableRowAddresses = ({ addressId, addressTypeId, streetLine1, streetLine2, city, state, zipcode, country }) => {
                     return (
@@ -101,14 +101,14 @@
                             <td>{country}</td>
                         </tr>
                     );
-                }
+                };
 
                 const handleSubmit = e => {
                     e.preventDefault();
 
                     console.table({ supplierId, addressId, addressTypeId });
                     alert('Form field values were logged to the console.');
-                }
+                };
 
                 return (
                     <main className='m-2 m-lg-5'>
